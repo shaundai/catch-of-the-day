@@ -41,6 +41,17 @@ componentWillUnmount(){
         })
     }
 
+    updateFish = (key, updatedFish) => {
+        //take copy of the current state
+        const fishes = { ...this.state.fishes };
+        //update the state to that of the updatedFish we took in
+        fishes[key] = updatedFish
+        //set the state with the updatedFish'
+        this.setState({
+            fishes: fishes
+        })
+    }
+
     loadSampleFishes = () => {
         this.setState({
             fishes: sampleFishes
@@ -65,7 +76,7 @@ componentWillUnmount(){
                     </ul>
                 </div>
                 <Order fishes={this.state.fishes} order={this.state.order} />
-                <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
+                <Inventory addFish={this.addFish} updateFish={this.updateFish} loadSampleFishes={this.loadSampleFishes} fishes={this.state.fishes} />
             </div>
             )
     }
